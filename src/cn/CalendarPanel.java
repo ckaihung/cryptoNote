@@ -63,7 +63,7 @@ public class CalendarPanel extends JPanel implements ItemListener {
 		}		
 	}
 
-	public CalendarPanel(String title) {
+	public CalendarPanel() {
 		super();
 		p1 = new JPanel();
 		setVisible(true);

@@ -40,7 +40,7 @@ public class CalendarDemo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		CalendarPanel calPanel = new CalendarPanel("Calendar");
+		CalendarPanel calPanel = new CalendarPanel();
 		
 		contentPane.add(calPanel, BorderLayout.CENTER);
 		
