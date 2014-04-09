@@ -58,7 +58,8 @@ public class CalendarPanel extends JPanel implements ItemListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			Calendar cal = Calendar.getInstance();
-			drawCalendar(cal.get(Calendar.MONTH), cal.get(Calendar.YEAR));
+			month.setSelectedIndex(cal.get(Calendar.MONTH));
+			year.setSelectedIndex(cal.get(Calendar.YEAR)-1980);
 		}		
 	}
 
@@ -134,17 +135,20 @@ public class CalendarPanel extends JPanel implements ItemListener {
 				p2.add(label);
 				i++;
 			}
-			JLabel label = new JLabel(String.valueOf(day));
-			label.setHorizontalAlignment(SwingConstants.RIGHT);
+			DateAction dAction = new DateAction(inputYear, inputMonth, day);
+			
+			JButton btnDate = new JButton(dAction);
+			btnDate.setHorizontalAlignment(SwingConstants.RIGHT);
+			btnDate.setText(String.valueOf(day));
 			
 			if (	inputYear==today.get(Calendar.YEAR) && 
 					inputMonth==today.get(Calendar.MONTH) && 
 					day==today.get(Calendar.DAY_OF_MONTH)) {
-				Font font = label.getFont();
+				Font font = btnDate.getFont();
 				Font boldFont = new Font(font.getFontName(), Font.BOLD, 14);
-				label.setFont(boldFont);
+				btnDate.setFont(boldFont);
 			}
-			p2.add(label);
+			p2.add(btnDate);
 			
 			
 			
