@@ -155,5 +155,6 @@ public class CalendarPanel extends JPanel implements ItemListener {
 			day++;
 		}
 		p2.validate();
+		p2.repaint();
 	}
 }

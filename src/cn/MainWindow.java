@@ -1,11 +1,14 @@
 package cn;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BorderFactory;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
@@ -18,8 +21,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JLabel;
 
@@ -54,6 +58,16 @@ public class MainWindow extends JFrame implements ActionListener {
 				}
 			}
 		});
+	}
+	
+	class StatusLabel extends JLabel implements Observer {
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			CnContent content = CnContent.getInstance();
+			SimpleDateFormat formatter = new SimpleDateFormat("Y/M/d");
+			String dateStr = formatter.format(content.getCal().getTime());
+			this.setText(dateStr);
+		}
 	}
 
 	/**
@@ -108,7 +122,10 @@ public class MainWindow extends JFrame implements ActionListener {
 		optionPanel = new JPanel();
 		leftPanel.add(optionPanel);
 		
-		lblStatus = new JLabel();
+		lblStatus = new StatusLabel();
+		lblStatus.setText(" ");
+		Border topLine = BorderFactory.createMatteBorder(1, 0, 0, 0, Color.GRAY);
+		lblStatus.setBorder(topLine);
 		leftPanel.add(lblStatus, BorderLayout.SOUTH);
 		
 		textArea = new JTextArea();
@@ -116,6 +133,10 @@ public class MainWindow extends JFrame implements ActionListener {
 		textArea.setWrapStyleWord(true);
 		scrollPane = new JScrollPane(textArea);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
+		
+		// add listener
+		CnContent content = CnContent.getInstance();
+		content.addObserver((Observer) lblStatus);
 	}
 	
 	public void setStatus(String str) {

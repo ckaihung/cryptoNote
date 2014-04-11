@@ -2,8 +2,9 @@ package cn;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Observable;
 
-public class CnContent {
+public class CnContent extends Observable {
 	private static CnContent instance = null;
 	
 	private Calendar cal;
@@ -35,9 +36,13 @@ public class CnContent {
 	
 	public void setCal(Calendar cal) {
 		this.cal = cal;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void setCal(int year, int month, int date) {
 		this.cal.set(year, month, date);
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

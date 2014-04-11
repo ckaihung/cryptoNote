@@ -2,7 +2,6 @@ package cn;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
-import javax.swing.JOptionPane;
 
 public class DateAction extends AbstractAction {
 	private int year;
