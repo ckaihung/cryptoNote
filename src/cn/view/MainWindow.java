@@ -1,4 +1,4 @@
-package cn;
+package cn.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,6 +26,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JLabel;
+
+import cn.model.CnContent;
 
 public class MainWindow extends JFrame implements ActionListener {
 

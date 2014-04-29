@@ -1,4 +1,4 @@
-package cn;
+package cn.view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -16,6 +16,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import controller.DateAction;
+
 
 public class CalendarPanel extends JPanel implements ItemListener {
 	

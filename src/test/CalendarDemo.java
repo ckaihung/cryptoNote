@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import cn.CalendarPanel;
+import cn.view.CalendarPanel;
 
 public class CalendarDemo extends JFrame {
 

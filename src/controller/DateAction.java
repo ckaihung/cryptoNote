@@ -1,7 +1,9 @@
-package cn;
+package controller;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
+
+import cn.model.CnContent;
 
 public class DateAction extends AbstractAction {
 	private int year;
