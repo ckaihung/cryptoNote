@@ -16,20 +16,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JLabel;
 
-import cn.model.CnContent;
-
-public class MainWindow extends JFrame implements ActionListener {
+public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JMenuBar menuBar;
@@ -62,16 +54,6 @@ public class MainWindow extends JFrame implements ActionListener {
 		});
 	}
 	
-	class StatusLabel extends JLabel implements Observer {
-		@Override
-		public void update(Observable arg0, Object arg1) {
-			CnContent content = CnContent.getInstance();
-			SimpleDateFormat formatter = new SimpleDateFormat("Y/M/d");
-			String dateStr = formatter.format(content.getCal().getTime());
-			this.setText(dateStr);
-		}
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -135,22 +117,9 @@ public class MainWindow extends JFrame implements ActionListener {
 		textArea.setWrapStyleWord(true);
 		scrollPane = new JScrollPane(textArea);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
-		
-		// add listener
-		CnContent content = CnContent.getInstance();
-		content.addObserver((Observer) lblStatus);
 	}
 	
 	public void setStatus(String str) {
 		this.lblStatus.setText(str);
 	}
-	
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		CnContent content = CnContent.getInstance();
-		Date date = content.getCal().getTime();
-		SimpleDateFormat formatter = new SimpleDateFormat("Y/M/d");
-		formatter.format(date);		
-	}
-
 }
